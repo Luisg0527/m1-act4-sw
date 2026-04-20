@@ -36,6 +36,10 @@ jobs:
           VITE_PUBLIC_ENVIRONMENT: dev
           VITE_PUBLIC_VERSION: ${{ github.sha }}
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
+          VITE_PROD_BUDGET: ${{ vars.VITE_PROD_BUDGET }}
+          VITE_PROD_FORMAT: ${{ vars.VITE_PROD_FORMAT }}
+          VITE_PROD_GROSS: ${{ secrets.VITE_PROD_GROSS }}
+          VITE_ENV_NOTE: ${{ secrets.VITE_ENV_NOTE }}
 
       - name: Build staging site
         if: github.ref == 'refs/heads/staging' || github.base_ref == 'staging'
@@ -44,6 +48,10 @@ jobs:
           VITE_PUBLIC_ENVIRONMENT: staging
           VITE_PUBLIC_VERSION: ${{ github.sha }}
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
+          VITE_PROD_BUDGET: ${{ vars.VITE_PROD_BUDGET }}
+          VITE_PROD_FORMAT: ${{ vars.VITE_PROD_FORMAT }}
+          VITE_PROD_GROSS: ${{ secrets.VITE_PROD_GROSS }}
+          VITE_ENV_NOTE: ${{ secrets.VITE_ENV_NOTE }}
 
       - name: Upload preview artifact for develop
         if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
@@ -82,6 +90,10 @@ jobs:
           VITE_PUBLIC_ENVIRONMENT: staging
           VITE_PUBLIC_VERSION: ${{ github.sha }}
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
+          VITE_PROD_BUDGET: ${{ vars.VITE_PROD_BUDGET }}
+          VITE_PROD_FORMAT: ${{ vars.VITE_PROD_FORMAT }}
+          VITE_PROD_GROSS: ${{ secrets.VITE_PROD_GROSS }}
+          VITE_ENV_NOTE: ${{ secrets.VITE_ENV_NOTE }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
