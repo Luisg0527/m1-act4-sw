@@ -16,6 +16,8 @@ concurrency:
 jobs:
   quality:
     runs-on: ubuntu-latest
+  environment:
+      name: ${{ (github.ref == 'refs/heads/main' || github.base_ref == 'main') && 'production' || (github.ref == 'refs/heads/staging' || github.base_ref == 'staging') && 'staging' || 'develop' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
